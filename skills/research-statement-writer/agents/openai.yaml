@@ -1,0 +1,8 @@
+# Optional Codex metadata (see https://developers.openai.com/codex/skills).
+# Claude Code ignores this file; the SKILL.md frontmatter is what both agents read.
+interface:
+  display_name: "Research Statement Writer"
+  short_description: "Draft or tailor a faculty-application research statement from your CV, publications and dissertation."
+  default_prompt: "Use $research-statement-writer with my CV and publications to draft a research statement."
+policy:
+  allow_implicit_invocation: true

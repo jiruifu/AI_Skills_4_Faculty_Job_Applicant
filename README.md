@@ -1,5 +1,7 @@
 # AI Skills for Faculty Job Applicants
 
+Works with **Claude Code**, **Claude.ai** and **OpenAI Codex**.
+
 A collection of [Claude skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills/overview) for the academic job market. Each skill is a self-contained folder: a `SKILL.md` that teaches Claude how to produce one part of a faculty application well, plus the **tutorials and sample documents it was learned from**, so anyone can see where the advice comes from and improve it.
 
 The goal is a community-maintained toolkit: the more good tutorials and real, successful application documents the collection holds, the better every skill gets. See [Help make these skills better](#help-make-these-skills-better).
@@ -19,25 +21,47 @@ Suggestions for further skills are welcome — open an issue.
 
 ## Installation
 
+The skills follow the [Agent Skills](https://agentskills.io) open format (a folder with a `SKILL.md`), so the same folder works in **Claude Code**, **Claude.ai** and **OpenAI Codex** (CLI, IDE extension and ChatGPT) without changes. Each agent just looks in a different directory:
+
+| Agent | User-level (all projects) | Project-level (this repo) | Invoke |
+|---|---|---|---|
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` | `/research-statement-writer` |
+| Codex | `~/.agents/skills/` | `.agents/skills/` | `$research-statement-writer` or `/skills` |
+
+### Quick install (macOS / Linux)
+
+```bash
+git clone https://github.com/jiruifu/AI_Skills_4_Faculty_Job_Applicant.git
+cd AI_Skills_4_Faculty_Job_Applicant
+
+./install.sh                 # all skills, for both Claude Code and Codex
+./install.sh codex           # Codex only
+./install.sh claude          # Claude Code only
+./install.sh both research-statement-writer   # just one skill
+./install.sh --project codex # into ./.agents/skills of the current directory instead of ~
+```
+
+### Manual install
+
+Copy the skill folder into the agent's directory (Windows: use Explorer or `xcopy /E`):
+
+```bash
+# Claude Code
+mkdir -p ~/.claude/skills && cp -r skills/research-statement-writer ~/.claude/skills/
+
+# Codex
+mkdir -p ~/.agents/skills && cp -r skills/research-statement-writer ~/.agents/skills/
+```
+
+Restart the agent if the skill doesn't show up. In Codex you can also ask the built-in installer to fetch it: `$skill-installer install research-statement-writer from https://github.com/jiruifu/AI_Skills_4_Faculty_Job_Applicant`.
+
+### Use it straight from a clone
+
+The repo ships `.claude/skills/` and `.agents/skills/` folders that link to `skills/`, so if you open this repository itself in Claude Code or Codex, every skill is already available with no install step.
+
 ### Claude.ai / Claude desktop
 
 Upload the skill folder (or just its `SKILL.md`) as a custom skill under **Settings → Skills**, or paste the `SKILL.md` and ask Claude to save it as a skill.
-
-### Claude Code
-
-Copy the skill folder(s) you want into your skills directory:
-
-```bash
-# personal (all projects)
-mkdir -p ~/.claude/skills
-cp -r skills/research-statement-writer ~/.claude/skills/
-
-# or project-level
-mkdir -p .claude/skills
-cp -r skills/research-statement-writer .claude/skills/
-```
-
-Then invoke a skill with its slash command (e.g. `/research-statement-writer`) or just describe the task.
 
 ## Example usage
 
@@ -55,10 +79,16 @@ Then invoke a skill with its slash command (e.g. `/research-statement-writer`) o
 skills/
 └── <skill-name>/
     ├── SKILL.md                 # required: frontmatter (name, description) + instructions
+    ├── agents/openai.yaml       # optional: Codex display name / invocation policy (ignored by Claude)
     └── references/
         ├── tutorials/           # the guides the skill was distilled from (PDF)
         └── samples/             # real documents from successful applications (+ README on how to add one)
+.claude/skills/<skill-name>  -> symlink to skills/<skill-name>   (Claude Code auto-discovery)
+.agents/skills/<skill-name>  -> symlink to skills/<skill-name>   (Codex auto-discovery)
+install.sh                   # copies skills into ~/.claude/skills and/or ~/.agents/skills
 ```
+
+When adding a new skill, create it under `skills/` and add the two symlinks (`ln -s ../../skills/<name> .claude/skills/<name>` and the same under `.agents/skills/`).
 
 ## Help make these skills better
 
