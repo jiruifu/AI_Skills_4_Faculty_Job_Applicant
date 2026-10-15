@@ -28,7 +28,27 @@ The skills follow the [Agent Skills](https://agentskills.io) open format (a fold
 | Claude Code | `~/.claude/skills/` | `.claude/skills/` | `/research-statement-writer` |
 | Codex | `~/.agents/skills/` | `.agents/skills/` | `$research-statement-writer` or `/skills` |
 
-### Quick install (macOS / Linux)
+### Quick start — let the agent install it
+
+Paste this into Claude Code or Codex and it will fetch the repo and install the skills itself:
+
+> Install the skills from https://github.com/jiruifu/AI_Skills_4_Faculty_Job_Applicant — clone the repo to a temp folder and run `./install.sh` (use `./install.sh claude` if you are Claude Code, `./install.sh codex` if you are Codex). Then confirm the `research-statement-writer` skill is available.
+
+Or run one of these yourself in a terminal — no clone needed:
+
+```bash
+# with the cross-agent skills CLI (Node.js required) — works for Claude Code, Codex and ~70 other agents
+npx skills add jiruifu/AI_Skills_4_Faculty_Job_Applicant -a claude-code -a codex -g -y   # user-level, both agents
+npx skills add jiruifu/AI_Skills_4_Faculty_Job_Applicant -a codex -y                     # project-level, Codex only
+
+# or with plain shell (git required)
+curl -fsSL https://raw.githubusercontent.com/jiruifu/AI_Skills_4_Faculty_Job_Applicant/main/quick-install.sh | sh              # both agents
+curl -fsSL https://raw.githubusercontent.com/jiruifu/AI_Skills_4_Faculty_Job_Applicant/main/quick-install.sh | sh -s -- codex  # Codex only
+```
+
+Start a new session afterward so the agent picks the skill up.
+
+### Install from a clone
 
 ```bash
 git clone https://github.com/jiruifu/AI_Skills_4_Faculty_Job_Applicant.git
@@ -86,6 +106,7 @@ skills/
 .claude/skills/<skill-name>  -> symlink to skills/<skill-name>   (Claude Code auto-discovery)
 .agents/skills/<skill-name>  -> symlink to skills/<skill-name>   (Codex auto-discovery)
 install.sh                   # copies skills into ~/.claude/skills and/or ~/.agents/skills
+quick-install.sh             # curl-able one-liner: clones the repo and runs install.sh
 ```
 
 When adding a new skill, create it under `skills/` and add the two symlinks (`ln -s ../../skills/<name> .claude/skills/<name>` and the same under `.agents/skills/`).
