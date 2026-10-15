@@ -14,6 +14,16 @@ This skill has two modes:
 
 If the user gives a CV but no publications or dissertation, ask for them once — the statement lives or dies on specific findings, and a CV alone only lists titles. If the user does not say which mode or which institution type, infer it from what they attached and say which reading you took at the top of your reply.
 
+## Reference material
+
+The guidance below is distilled from the career-center tutorials in `references/tutorials/` and from the sample statements in `references/samples/`. The skill works without opening them, but read them when the case is unusual or the user asks "why": the tutorials for the reasoning behind a rule (e.g. why a second project must be distinct, how to pitch to a PUI), the samples to see a structure executed end to end (section lengths, how thrusts are laid out, how self-citations and figures are used). When a sample's field and institution type match the user's, skim it before drafting so the output matches the conventions a committee in that field expects.
+
+- `references/tutorials/01-structure-of-research-statement.pdf` — two canonical outlines (introduction → dissertation → contributions → second project → impact; and the 25/25/50 past/current/future split).
+- `references/tutorials/02-bridging-past-work-and-future-vision.pdf` — the ABT story and tagline exercises; demonstrating fit, funding and planning on two timelines; institution-type fit; organizing and formatting for a skimming reader.
+- `references/tutorials/03-ucr-graduate-writing-center-research-statement.pdf` — conventions (stand-alone document, no advisor names, minimize "I", topic vs contribution), brainstorming questions, and the five-paragraph model.
+- `references/tutorials/04-academic-careers-research-statements.pdf` — purpose, content checklist for past and future research, format, and a list of public sample statements by field.
+- `references/samples/` — real statements from successful applications, named `<field>-<institution-type>-<year>`; see its README for how they are contributed.
+
 ## Step 1 — Mine the source material
 
 Read everything attached before writing a word. Pull out and keep a working inventory (a scratch file is fine) of:
